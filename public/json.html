@@ -1,0 +1,37 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+
+    $("button").click(function(){
+      var subst = $('#substitute');
+      $.getJSON('data.json', function (data) {
+        console.log(data);
+
+        subst.empty();
+
+        subst.append('<div>')
+        $.each(data, function(i, item){
+          subst.append('<p>' + i + ': ' + item + '</p>');
+        });
+        subst.append('</div>')
+      }
+      );
+    });
+
+});
+  </script>
+
+</head>
+<body>
+<div id="substitute">
+  <p>Paragrafo a ser removido, basta dar um click.<p>
+  <button>Substituir</button>
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html>
+<body>
+    <form id="stat" action="/form" method="GET">
+      <label for="name">Nome: </label>
+      <input type="text" id="name" name="name"> <br> <br>
+      <label for="status">Status: </label>
+      <select id="status" name="status" form="stat">
+        <option value="motivado">motivado</option>
+        <option value="estudioso">estudioso</option>
+        <option value="mais-ou-menos">mais ou menos</option>
+      </select> <br> <br>
+      <input type="submit" value="Enviar">
+    </form>
+  </body>
+</html>

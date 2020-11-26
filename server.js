@@ -1,5 +1,6 @@
 // server.js
 
+// inicializacoes das dependencias
 var express = require('express')
 var app = express()
 var multer = require('multer');
@@ -18,42 +19,49 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// static-upload-form-ajax
+// definicao das rotas
 
+// pagina do menu principal
 app.get('/', function (req,res) {
     res.sendFile(__dirname + "/public/" +"index.html");
 });
 
+// exibicao do conteudo estatico
 app.get('/static', function (req,res) {
     res.sendFile(__dirname + "/public/" +"static.html");
 });
 
+// upload de arquivos
 app.get('/upload', function (req,res) {
     res.sendFile(__dirname + "/public/" +"upload.html");
 });
 
+// submissao de formulario
 app.get('/form-get', function (req,res) {
     res.sendFile(__dirname + "/public/" +"form.html");
 });
 
+// substituicao de paragrafos
 app.get('/json-ex', function (req,res) {
     res.sendFile(__dirname + "/public/" +"json.html");
 });
 
 app.use(express.static('public'));
 
+// tratamento do envio do formulario
 app.get('/form', function(req, res)
 {
+    // construir campos do input
     var response = {
         name: req.query.name,
         status: req.query.status,
     };
-    console.log(response);
-    //res.end(JSON.stringify(response));
+    // tratar dados no backend
+    console.log(response); // apenas imprimir objeto.
 		res.sendFile(__dirname + "/public/" +"index.html");
 })
 
-// continua do mesma forma
+// continua do mesma forma para tratar o upload
 app.post('/file/uploading', upload.single('file'), function (req, res) {
 		console.log("Arquivo salvo no diretorio uploads.");
 		res.sendFile(__dirname + "/public/" +"index.html");
